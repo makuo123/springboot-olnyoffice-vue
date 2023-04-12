@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+<head>
+    <title th:text="${document.title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/viewer.css}">
+</head>
+<body>
+    <div class="form">
+        <div id="iframeEditor"></div>
+    </div>
+    <script type="text/javascript" th:src="@{/js/jquery-1.8.2.js}"></script>
+    <script type="text/javascript" th:src="@{${documentServerApiJs}}"></script>
+    <script type="text/javascript" th:src="@{/js/editor.js}"></script>
+    <!-- 先通过 th:inline=“javascript” 添加到标签，这样js代码即可访问model中的属性 -->
+    <script th:inline="javascript">
+        // js 中可以通过“[[${xxx}]]” 格式获得实际的值
+        Editor.init([[${document}]], [[${documentEditParam}]]);
+    </script>
+</body>
+</html>

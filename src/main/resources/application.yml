@@ -1,0 +1,85 @@
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为8080
+  port: 20053
+  servlet:
+    # 应用的访问路径
+    context-path: /
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+# 日志配置
+logging:
+  level:
+    com.ruoyi: debug
+    org.springframework: warn
+
+# Spring配置
+spring:
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  profiles:
+    active: dbconfig
+  # 文件上传
+  servlet:
+     multipart:
+       # 单个文件大小
+       max-file-size:  10MB
+       # 设置总上传的文件大小
+       max-request-size:  20MB
+  thymeleaf:
+    prefix: classpath:/templates
+
+# MyBatisPlus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false
+  type-aliases-package: com.lc.docdeal.bean
+  global-config:
+    db-config:
+      # 全局默认主键类型
+      id-type: UUID
+      # 表名、是否使用下划线命名，默认数据库表使用下划线命名
+      table-underline: true
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: true
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: false
+  mapper-locations:
+    - /mapper/*.xml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countsql
+
+#docmentServer 相关配置
+#    files.docservice.url.site=http://192.168.99.100:9000/
+#    files.docservice.url.converter=ConvertService.ashx
+#    files.docservice.url.command=coauthoring/CommandService.ashx
+#    files.docservice.url.api=web-apps/apps/api/documents/api.js
+#    files.docservice.url.preloader=web-apps/apps/api/documents/cache-scripts.html
+document:
+  server:
+    host: 192.168.1.6:20053
+files:
+  savePath: D:\doc\
+  docservice:
+    convert-docs: .docm|.dotx|.dotm|.dot|.doc|.odt|.fodt|.ott|.xlsm|.xltx|.xltm|.xlt|.xls|.ods|.fods|.ots|.pptm|.ppt|.ppsx|.ppsm|.pps|.potx|.potm|.pot|.odp|.fodp|.otp|.rtf|.mht|.html|.htm|.xml|.epub|.fb2
+    edited-docs: .docx|.xlsx|.csv|.pptx|.txt
+    viewed-docs: .pdf|.djvu|.xps
+    url:
+      site: http://192.168.1.129:6831/
+      converter: ConvertService.ashx
+      command: coauthoring/CommandService.ashx
+      api: web-apps/apps/api/documents/api.js
+      preloader: web-apps/apps/api/documents/cache-scripts.html
+

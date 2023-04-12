@@ -1,0 +1,10 @@
+# 数据源配置
+spring:
+  datasource:
+    driverClassName: org.sqlite.JDBC
+#    url: jdbc:mysql://localhost:3306/upload-file?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    # url: jdbc:sqlite:D:/eclipse/xy.db sqlite配置外部盘符数据库
+    url: jdbc:sqlite:sqlite/file_info.db
+    username:
+    password:
+
